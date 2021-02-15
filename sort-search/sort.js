@@ -1,8 +1,6 @@
 
 const swap = (arr, i, j) => {
-    const tmp = arr[i];
-    arr[i] = arr[j];
-    arr[i] = tmp;
+    [arr[i], , arr[j]] = [arr[j], arr[i]]
 };
 
 const insertionSort = (src) => {
@@ -22,33 +20,42 @@ const insertionSort = (src) => {
 }
 
 
-const mergeSorted = (arr1, arr2, i = 0, j = 0, res = []) => {
-    const [m, n] = [arr1.length, arr2.length];
-    let i = j = k = 0;
-    let res = []
-    while (i < m && j < n) {
-        if (arr1[i] < arr2[j]) {
-            res[k++] = arr1[i++];
-        } else {
-            res[k++] = arr2[j++];
-        }
+// https://flaviocopes.com/merge-sort-javascript/
+const merge = (arr1, arr2) => {
+    const res = [];
+    while (arr1.length && arr2.length) {
+        res.push((arr1[0] > arr2[0]) ? arr2.shift() : arr1.shift());
     }
-    while (i < m) {
-        res[k++] = arr1[i++];
-    }
-    while (j < n) {
-        res[k++] = arr2[j++];
-    }
+    arr1.length && res.push(...arr1);
+    arr2.length && res.push(...arr2);
     return res;
 }
 
+const mergeSortRecur = (arr) => {
+    if (arr.length < 2) {
+        return arr;
+    }
+    const m = Math.floor(arr.length / 2); // MIDPOINT
+    return merge(
+        mergeSortRecur(arr.slice(0, m)),
+        mergeSortRecur(arr.slice(m, arr.length))
+    )
+}
 
-const partition = (src, leftInc, rightInc) => {
-    const pivotIndex = rightInc; // can be left/mid
 
+const quickSortRecur = (src) => {
+    const arr = [...src];
+    if (arr.length < 2) {
+        return arr;
+    }
+    const pivot = arr[arr.length - 1]; // PIVOT
+    const larger = arr.filter(e => e > pivot);
+    const smaller = arr.filter(e => e < pivot);
+    return [...quickSortRecur(smaller), pivot, ...quickSortRecur(larger)]
 }
 
 module.exports = {
     insertionSort,
-    mergeSorted
+    mergeSortRecur,
+    quickSortRecur
 }

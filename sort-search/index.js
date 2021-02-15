@@ -1,8 +1,10 @@
 const assert = require('assert').strict;
 
 const { arr, arrSorted } = require('./data')
-const { insertionSort, mergeSorted } = require('./sort')
+const { insertionSort, mergeSorted, mergeSortRecur, quickSortRecur } = require('./sort')
+const { binarySearch } = require('./search')
 
 
-console.log(mergeSorted([1, 4, 8, 21, 32], [4, 7, 12, 13, 99]))
+console.log(quickSortRecur(arr))
+console.log(binarySearch([1, 2, 3, 4, 5], 5))
 // assert.deepEqual(insertSort(arr), [...arr].sort())
