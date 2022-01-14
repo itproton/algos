@@ -23,3 +23,20 @@ Quick vs Merge
 - MS is **STABLE** (2 equal elements in original order)
 - **Locality/Reference**: `{QS: good-cache-locality}`
 - Worst case `{QS: O(n2), MS:O(nlogn)}`
+
+# Resources
+> https://leetcode.com/problemset/all/
+Codechef
+Interview Bit
+Leetcode
+HackerEarth
+Hackerrank
+Coding Ninjas
+Codeforces
+CodeChef.
+HackerRank(my favorite).
+SPOJ.
+HackerEarth.
+TopCoder.
+CoderByte.
+CodeWars.
